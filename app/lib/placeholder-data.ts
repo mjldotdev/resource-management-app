@@ -3,9 +3,9 @@
 const users = [
   {
     id: '410544b2-4001-4271-9855-fec4b6a6442a',
-    name: 'User',
-    email: 'user@nextmail.com',
-    password: '123456',
+    name: 'Admin',
+    email: 'admin@email.com',
+    password: 'admin',
   },
 ];
 
@@ -144,4 +144,29 @@ const revenue = [
   { month: 'Dec', revenue: 4800 },
 ];
 
-export { users, customers, invoices, revenue };
+const inventory = [
+  { name: 'Reinforcing Steel Bars', sku: 'CM-001', category: 'structural', quantity: 1200, unit: 'kg', location: 'Warehouse A', price_per_unit: 1.45 },
+  { name: 'Concrete Mix (dry)',     sku: 'CM-002', category: 'structural', quantity: 8000, unit: 'kg', location: 'Warehouse B', price_per_unit: 0.12 },
+  { name: 'Portland Cement',        sku: 'CM-003', category: 'structural', quantity: 5000, unit: 'kg', location: 'Warehouse A', price_per_unit: 0.10 },
+  { name: 'Sand (river)',           sku: 'CM-004', category: 'aggregate',  quantity: 15000, unit: 'kg', location: 'Warehouse C', price_per_unit: 0.03 },
+  { name: 'Gravel (coarse)',        sku: 'CM-005', category: 'aggregate',  quantity: 12000, unit: 'kg', location: 'Warehouse C', price_per_unit: 0.04 },
+  { name: 'Bricks (red)',           sku: 'CM-006', category: 'finishing', quantity: 25000, unit: 'pcs', location: 'Warehouse B', price_per_unit: 0.25 },
+  { name: 'Drywall Panels',         sku: 'CM-007', category: 'finishing', quantity: 4000, unit: 'pcs', location: 'Warehouse A', price_per_unit: 3.20 },
+  { name: 'Insulation Roll',        sku: 'CM-008', category: 'finishing', quantity: 600, unit: 'sqm', location: 'Warehouse B', price_per_unit: 5.10 },
+  { name: 'Timber Beams (2x6)',     sku: 'CM-009', category: 'structural', quantity: 350, unit: 'pcs', location: 'Warehouse C', price_per_unit: 12.75 },
+];
+
+const equipment = [
+  { name: 'Excavator',               serial_number: 'EQ-001', type: 'heavy',      status: 'operational',      location: 'Site Alpha', purchase_date: '2022-04-12', last_maintenance: '2025-11-02' },
+  { name: 'Crawler Crane',           serial_number: 'EQ-002', type: 'heavy',      status: 'maintenance due',  location: 'Site Beta',  purchase_date: '2021-09-05', last_maintenance: '2025-09-15' },
+  { name: 'Concrete Mixer Truck',    serial_number: 'EQ-003', type: 'vehicle',    status: 'operational',      location: 'Depot',      purchase_date: '2023-01-20', last_maintenance: '2025-12-01' },
+  { name: 'Bulldozer',               serial_number: 'EQ-004', type: 'heavy',      status: 'operational',      location: 'Site Gamma', purchase_date: '2020-06-18', last_maintenance: '2025-10-10' },
+  { name: 'Tower Crane',             serial_number: 'EQ-005', type: 'heavy',      status: 'operational',      location: 'Site Alpha', purchase_date: '2022-11-30', last_maintenance: '2025-11-20' },
+  { name: 'Compactor (Roller)',      serial_number: 'EQ-006', type: 'equipment',  status: 'operational',      location: 'Depot',      purchase_date: '2023-07-14', last_maintenance: '2025-09-05' },
+  { name: 'Scissor Lift',            serial_number: 'EQ-007', type: 'equipment',  status: 'maintenance due',  location: 'Site Beta',  purchase_date: '2021-03-22', last_maintenance: '2025-08-28' },
+  { name: 'Generator Set',           serial_number: 'EQ-008', type: 'utility',    status: 'operational',      location: 'Depot',      purchase_date: '2020-12-01', last_maintenance: '2025-07-15' },
+  { name: 'Laser Level',             serial_number: 'EQ-009', type: 'tool',       status: 'operational',      location: 'Site Gamma', purchase_date: '2024-02-10', last_maintenance: '2025-12-08' },
+  { name: 'Survey Total Station',    serial_number: 'EQ-010', type: 'instrument', status: 'operational',      location: 'Office',    purchase_date: '2023-05-05', last_maintenance: '2025-11-30' }
+];
+
+export { users, customers, invoices, revenue, inventory, equipment };

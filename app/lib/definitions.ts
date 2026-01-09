@@ -86,3 +86,23 @@ export type InvoiceForm = {
   amount: number;
   status: 'pending' | 'paid';
 };
+
+export type InventoryItem = {
+  name: string;
+  sku: string;
+  category: string;
+  quantity: string;   // kept as string to match original data
+  unit: string;
+  location: string;
+  price_per_unit: number;
+};
+
+export type EquipmentItem = {
+  name: string;
+  serial_number: string;
+  type: string;
+  status: string;
+  location: string;
+  purchase_date: string;      // ISO date string
+  last_maintenance: string;   // ISO date string
+};

@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import postgres from 'postgres';
-import { invoices, customers, revenue, users } from '../lib/placeholder-data';
+import { invoices, customers, revenue, users, inventory, equipment } from '../lib/placeholder-data';
 
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
 
@@ -101,6 +101,61 @@ async function seedRevenue() {
   return insertedRevenue;
 }
 
+async function seedInventory() {
+  // await sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
+
+  await sql`
+    CREATE TABLE IF NOT EXISTS inventory (
+      name VARCHAR(255) NOT NULL,
+      sku VARCHAR(255) PRIMARY KEY,
+      category VARCHAR(255) NOT NULL,
+      quantity NUMERIC NOT NULL,
+      location VARCHAR(255) NOT NULL,
+      price_per_unit NUMERIC(12,2) NOT NULL
+    );
+  `;
+
+  const insertedInventory = await Promise.all(
+    inventory.map(
+      (inventory) => sql`
+        INSERT INTO inventory (name, sku, category, quantity, location, price_per_unit)
+        VALUES (${inventory.name}, ${inventory.sku}, ${inventory.category}, ${inventory.quantity}, ${inventory.location}, ${inventory.price_per_unit})
+        ON CONFLICT (sku) DO NOTHING;
+      `,
+    ),
+  );
+
+  return insertedInventory;
+}
+
+async function seedEquipment() {
+  // await sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
+
+  await sql`
+    CREATE TABLE IF NOT EXISTS equipment (
+      name VARCHAR(255) NOT NULL,
+      serial_number VARCHAR(255) PRIMARY KEY,
+      type VARCHAR(255) NOT NULL,
+      status VARCHAR(255) NOT NULL,
+      location VARCHAR(255) NOT NULL,
+      purchase_date DATE NOT NULL,
+      last_maintenance DATE NOT NULL
+    );
+  `;
+
+  const insertedEquipment = await Promise.all(
+    equipment.map(
+      (equipment) => sql`
+        INSERT INTO equipment (name, serial_number, type, status, location, purchase_date, last_maintenance)
+        VALUES (${equipment.name}, ${equipment.serial_number}, ${equipment.type}, ${equipment.status}, ${equipment.location}, ${equipment.purchase_date}, ${equipment.last_maintenance})
+        ON CONFLICT (serial_number) DO NOTHING;
+      `,
+    ),
+  );
+
+  return insertedEquipment;
+}
+
 export async function GET() {
   try {
     const result = await sql.begin((sql) => [
@@ -108,6 +163,8 @@ export async function GET() {
       seedCustomers(),
       seedInvoices(),
       seedRevenue(),
+      seedInventory(),
+      seedEquipment(),
     ]);
 
     return Response.json({ message: 'Database seeded successfully' });
