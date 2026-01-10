@@ -5,7 +5,9 @@ import {
   HomeIcon,
   DocumentDuplicateIcon,
   ArchiveBoxIcon,
-  WrenchScrewdriverIcon
+  WrenchScrewdriverIcon,
+  FolderIcon,
+  MapPinIcon
 } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -29,7 +31,21 @@ const links = [
     href: '/dashboard/equipment',
     icon: WrenchScrewdriverIcon,
   },
-  { name: 'Teams', href: '/dashboard/teams', icon: UserGroupIcon },
+  { 
+    name: 'Projects', 
+    href: '/dashboard/projects', 
+    icon: FolderIcon
+  },
+  { 
+    name: 'Sites', 
+    href: '/dashboard/sites', 
+    icon: MapPinIcon
+  },
+  { 
+    name: 'Clients',
+    href: '/dashboard/clients',
+    icon: UserGroupIcon
+  },
 ];
 
 export default function NavLinks() {

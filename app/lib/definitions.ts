@@ -88,21 +88,49 @@ export type InvoiceForm = {
 };
 
 export type InventoryItem = {
+  id: string;               // UUID
   name: string;
   sku: string;
   category: string;
-  quantity: string;   // kept as string to match original data
+  quantity: string;         // kept as string to match original data
   unit: string;
-  location: string;
+  project_id: string | null; // UUID – may be null if not linked
+  location_id: string | null; // UUID – may be null if not linked
   price_per_unit: number;
 };
 
 export type EquipmentItem = {
+  id: string;               // UUID
   name: string;
   serial_number: string;
   type: string;
   status: string;
-  location: string;
-  purchase_date: string;      // ISO date string
-  last_maintenance: string;   // ISO date string
+  category: string;
+  project_id: string | null; // UUID
+  location_id: string | null; // UUID
+  purchase_price: number | null;
+  purchase_date: string;    // ISO date (YYYY‑MM‑DD)
+  last_maintenance: string; // ISO date
+};
+
+export type Project = {
+  id: string;               // UUID
+  title: string;
+  description: string;
+  client_id: string;        // UUID referencing client table
+  parent_id: string | null; // UUID – self‑reference for sub‑projects
+};
+
+export type Site = {
+  id: string;               // UUID
+  name: string;
+  address: string;
+  project_id: string | null; // UUID – may be null for non‑project sites
+};
+
+export type Client = {
+  id: string;
+  name: string;
+  email: string;
+  image_url: string;
 };
