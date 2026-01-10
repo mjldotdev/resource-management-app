@@ -277,6 +277,7 @@ const projects = [
     description: "30‑story mixed‑use tower in the city centre.",
     client_id: 'd6e15727-9fe1-4961-8c5b-ea44a9bd81aa',
     parent_id: null,
+    status: 'active',
   },
   {
     id: '7f6f18d6-a96d-4770-93f7-5060b5e5be8a',
@@ -284,6 +285,7 @@ const projects = [
     description: "Logistics hub with 5 000 sqm storage space.",
     client_id: '3958dc9e-712f-4377-85e9-fec4b6a6442a',
     parent_id: null,
+    status: 'active',
   },
   {
     id: '5f62b858-7b9f-4ffe-9ebd-68f7e5ca9ff8',
@@ -291,6 +293,7 @@ const projects = [
     description: "Upgrade of classrooms and facilities for a K‑12 school.",
     client_id: '3958dc9e-742f-4377-85e9-fec4b6a6442a',
     parent_id: null,
+    status: 'active',
   },
 ];
 

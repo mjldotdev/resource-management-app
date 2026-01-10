@@ -5,6 +5,7 @@ import {
   InvoiceForm,
   InvoicesTable,
   LatestInvoiceRaw,
+  ProjectsTable,
   Revenue,
 } from './definitions';
 import { formatCurrency } from './utils';
@@ -214,5 +215,39 @@ export async function fetchFilteredCustomers(query: string) {
   } catch (err) {
     console.error('Database Error:', err);
     throw new Error('Failed to fetch customer table.');
+  }
+}
+
+// const ITEMS_PER_PAGE = 6;
+export async function fetchFilteredProjects(
+  query: string,
+  currentPage: number,
+) {
+  const offset = (currentPage - 1) * ITEMS_PER_PAGE;
+
+  try {
+    const projects = await sql<ProjectsTable[]>`
+      SELECT
+        projects.id,
+        projects.title,
+        projects.description,
+        projects.status,
+        clients.name,
+        clients.image_url
+      FROM projects
+      JOIN clients ON projects.client_id = clients.id
+      WHERE
+        clients.name ILIKE ${`%${query}%`} OR
+        projects.title::text ILIKE ${`%${query}%`} OR
+        projects.description::text ILIKE ${`%${query}%`} OR
+        projects.status ILIKE ${`%${query}%`}
+      ORDER BY clients.name ASC
+      LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
+    `;
+
+    return projects;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch projects.');
   }
 }

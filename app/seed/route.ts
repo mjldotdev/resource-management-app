@@ -172,15 +172,16 @@ async function seedProjects() {
       title VARCHAR(255) NOT NULL,
       description TEXT NOT NULL,
       client_id UUID REFERENCES clients(id) NOT NULL,
-      parent_id UUID REFERENCES projects(id)
+      parent_id UUID REFERENCES projects(id),
+      status VARCHAR(255) NOT NULL
     );
   `;
 
   const insertedProjects = await Promise.all(
     projects.map(
       (project) => sql`
-        INSERT INTO projects (id, title, description, client_id, parent_id)
-        VALUES (${project.id}, ${project.title}, ${project.description}, ${project.client_id}, ${project.parent_id})
+        INSERT INTO projects (id, title, description, client_id, parent_id, status)
+        VALUES (${project.id}, ${project.title}, ${project.description}, ${project.client_id}, ${project.parent_id}, ${project.status})
         ON CONFLICT (id) DO NOTHING;
       `,
     ),

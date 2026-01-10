@@ -119,6 +119,7 @@ export type Project = {
   description: string;
   client_id: string;        // UUID referencing client table
   parent_id: string | null; // UUID – self‑reference for sub‑projects
+  status: string;
 };
 
 export type Site = {
@@ -133,4 +134,17 @@ export type Client = {
   name: string;
   email: string;
   image_url: string;
+};
+
+export type ProjectsTable = {
+  id: string;
+  title: string;
+  description: string;
+  client_id: string;
+  name: string;
+  // email: string;
+  image_url: string;
+  // date: string;
+  // amount: number;
+  status: 'pending' | 'active';
 };
